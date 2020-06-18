@@ -314,7 +314,7 @@ void update_bridge(
         "ros1", details.at("package"), details.at("name"));
       if (factory) {
         try {
-          service_bridges_2_to_1[name] = factory->service_bridge_2_to_1(ros1_node, ros2_node, name);
+          service_bridges_2_to_1[name] = factory->service_bridge_2_to_1(ros1_node, ros2_node, name, name);
           printf("Created 2 to 1 bridge for service %s\n", name.data());
         } catch (std::runtime_error & e) {
           fprintf(stderr, "Failed to created a bridge: %s\n", e.what());
@@ -335,7 +335,7 @@ void update_bridge(
         "ros2", details.at("package"), details.at("name"));
       if (factory) {
         try {
-          service_bridges_1_to_2[name] = factory->service_bridge_1_to_2(ros1_node, ros2_node, name);
+          service_bridges_1_to_2[name] = factory->service_bridge_1_to_2(ros1_node, ros2_node, name, name);
           printf("Created 1 to 2 bridge for service %s\n", name.data());
         } catch (std::runtime_error & e) {
           fprintf(stderr, "Failed to created a bridge: %s\n", e.what());
