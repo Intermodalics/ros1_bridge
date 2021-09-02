@@ -92,13 +92,16 @@ list(APPEND generated_files "${generated_path}/get_mappings.cpp")
 
 # generate per interface compilation units to keep the memory usage low
 ament_index_get_resources(ros2_interface_packages "rosidl_interfaces")
+# actionlib_msgs is deprecated, but we will quiet the warning until the bridge has support for
+# ROS actions: https://github.com/ros2/design/issues/195
+set(actionlib_msgs_DEPRECATED_QUIET TRUE)
 foreach(package_name ${ros2_interface_packages})
   find_package(${package_name} QUIET REQUIRED)
   message(STATUS "Found ${package_name}: ${${package_name}_VERSION} (${${package_name}_DIR})")
   if(NOT "${package_name}" STREQUAL "builtin_interfaces")
     list(APPEND generated_files "${generated_path}/${package_name}_factories.cpp")
     list(APPEND generated_files "${generated_path}/${package_name}_factories.hpp")
-    foreach(interface_file ${${package_name}_INTERFACE_FILES})
+    foreach(interface_file ${${package_name}_IDL_FILES})
       file(TO_CMAKE_PATH "${interface_file}" interface_name)
       get_filename_component(interface_basename "${interface_name}" NAME_WE)
       # skipping actions and request and response messages of services
