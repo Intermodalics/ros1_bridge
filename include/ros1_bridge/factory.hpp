@@ -79,7 +79,19 @@ public:
     const std::string & topic_name,
     const rclcpp::QoS & qos)
   {
-    return node->create_publisher<ROS2_T>(topic_name, qos);
+    static constexpr std::initializer_list<rclcpp::QosPolicyKind> kAllPolicies{
+      rclcpp::QosPolicyKind::Deadline,
+      rclcpp::QosPolicyKind::Depth,
+      rclcpp::QosPolicyKind::Durability,
+      rclcpp::QosPolicyKind::History,
+      rclcpp::QosPolicyKind::Lifespan,
+      rclcpp::QosPolicyKind::Liveliness,
+      rclcpp::QosPolicyKind::LivelinessLeaseDuration,
+      rclcpp::QosPolicyKind::Reliability,
+    };
+    rclcpp::PublisherOptions options;
+    options.qos_overriding_options = kAllPolicies;
+    return node->create_publisher<ROS2_T>(topic_name, qos, options);
   }
 
   ros::Subscriber
@@ -143,8 +155,20 @@ public:
     callback = std::bind(
       &Factory<ROS1_T, ROS2_T>::ros2_callback, std::placeholders::_1, std::placeholders::_2,
       ros1_pub, ros1_type_name_, ros2_type_name_, node->get_logger(), ros2_pub);
+    static constexpr std::initializer_list<rclcpp::QosPolicyKind> kAllPolicies{
+      rclcpp::QosPolicyKind::AvoidRosNamespaceConventions,
+      rclcpp::QosPolicyKind::Deadline,
+      rclcpp::QosPolicyKind::Depth,
+      rclcpp::QosPolicyKind::Durability,
+      rclcpp::QosPolicyKind::History,
+      rclcpp::QosPolicyKind::Lifespan,
+      rclcpp::QosPolicyKind::Liveliness,
+      rclcpp::QosPolicyKind::LivelinessLeaseDuration,
+      rclcpp::QosPolicyKind::Reliability,
+    };
     rclcpp::SubscriptionOptions options;
     options.ignore_local_publications = true;
+    options.qos_overriding_options = kAllPolicies;
     return node->create_subscription<ROS2_T>(
       topic_name, qos, callback, options);
   }
