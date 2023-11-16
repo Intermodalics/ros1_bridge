@@ -2,6 +2,24 @@
 Changelog for package ros1_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.10.3 (2022-03-29)
+-------------------
+* Cleanup of README.md (`#342 <https://github.com/ros2/ros1_bridge/issues/342>`_)
+* Parametrizing service execution timeout (`#340 <https://github.com/ros2/ros1_bridge/issues/340>`_)
+* Fix cpplint error (`#341 <https://github.com/ros2/ros1_bridge/issues/341>`_)
+* Update package maintainers (`#335 <https://github.com/ros2/ros1_bridge/issues/335>`_)
+* Contributors: Cem Karan, Geoffrey Biggs, Jorge Perez, Marco Bassa, Tim Clephas, Tomoya Fujita
+
+0.10.2 (2021-11-05)
+-------------------
+* Example for `parameter_bridge` (`#330 <https://github.com/ros2/ros1_bridge/issues/330>`_)
+* Use rcpputils/scope_exit.hpp instead of rclcpp/scope_exit.hpp (`#324 <https://github.com/ros2/ros1_bridge/issues/324>`_)
+* Use FindPython3 and make Python dependency explicit (`#322 <https://github.com/ros2/ros1_bridge/issues/322>`_)
+* Bump ros-tooling/setup-ros@v0.2 (`#323 <https://github.com/ros2/ros1_bridge/issues/323>`_)
+* Add GitHub workflow for CI (`#310 <https://github.com/ros2/ros1_bridge/issues/310>`_)
+* Update includes after rcutils/get_env.h deprecation (`#311 <https://github.com/ros2/ros1_bridge/issues/311>`_)
+* Contributors: Christophe Bedard, Harsh Deshpande, Loy, Shane Loretz
+
 0.10.1 (2021-01-25)
 -------------------
 * Fix logging for updated rclcpp interface (`#303 <https://github.com/ros2/ros1_bridge/issues/303>`_)
