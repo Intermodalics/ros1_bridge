@@ -108,6 +108,24 @@ Factory<
 template<>
 void
 Factory<
+  ros::Time,
+  builtin_interfaces::msg::Time
+>::convert_1_to_2(
+  const ros::Time & ros1_msg,
+  builtin_interfaces::msg::Time & ros2_msg);
+
+template<>
+void
+Factory<
+  ros::Time,
+  builtin_interfaces::msg::Time
+>::convert_2_to_1(
+  const builtin_interfaces::msg::Time & ros2_msg,
+  ros::Time & ros1_msg);
+
+template<>
+void
+Factory<
   std_msgs::Time,
   builtin_interfaces::msg::Time
 >::internal_stream_translate_helper(
